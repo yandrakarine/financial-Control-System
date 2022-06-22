@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import Resume from './components/Resume'
 import GlobalStyle from './styles/global'
 
-function App() {
+const App = () => {
   return (
     <>
       <Header/>
+      <Resume/>
       <GlobalStyle />
     </>
   )
