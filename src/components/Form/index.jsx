@@ -2,10 +2,12 @@ import { useState } from 'react'
 import React from 'react'
 import * as C from "./styles"
 
-const Form = () => {
+const Form = ({ handleAdd }) => {
   const [desc, setDesc] = useState("");
   const [amount, setAmount] = useState("");
   const [isExpense, setExpense] = useState(false);
+
+  const generateID = () => Math.round(Math.random() * 1000)
 
   const handleSave = () => {
     if (!desc || !amount) {
@@ -15,6 +17,18 @@ const Form = () => {
       alert("O valor tem que ser positivo!")
       return
     }
+
+    const transaction = {
+      id: generateID(),
+      desc: desc,
+      amount: amount,
+      expense: isExpense,
+    }
+
+    handleAdd(transaction)
+
+    setDesc("")
+    setAmount("")
   }
 
   return (
@@ -46,12 +60,11 @@ const Form = () => {
           
           <C.Input
           type="radio"
-          id="rIncome"
-          defaultChecked
+          id="rExpenses"
           name="group1"
           onChange={() => setExpense(!isExpense)}
           />
-          <C.Label htmlFor="rIncome" >Saída</C.Label>
+          <C.Label htmlFor="rExpenses" >Saída</C.Label>
         </C.RadioGroup>
 
         <C.Button onClick={handleSave}>ADICIONAR</C.Button>
