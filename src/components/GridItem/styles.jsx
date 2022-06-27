@@ -12,5 +12,3 @@ export const Td = styled.td`
         height: 18px;
     }
 `;
-
-export const Teste = styled.div``
